@@ -284,14 +284,4 @@ if [ ${stage} -le 9 ] && [ ${stop_stage} -ge 9 ]; then
         --valid-label ${lmdatadir}/valid.txt \
         --resume ${lm_resume} \
         --dict ${dict}
-
-    reverse_weight=0.0
-    chunk_size=-1
-    ./tools/decode.sh --nj 16 \
-        --beam 15.0 --lattice_beam 7.5 --max_active 7000 \
-        --blank_skip_thresh 0.98 --ctc_weight 0.5 --rescoring_weight 1.0 \
-        --reverse_weight $reverse_weight --chunk_size $chunk_size \
-        --fst_path data/lang_test/TLG.fst \
-        data/test/wav.scp data/test/text $dir/final.zip \
-        data/lang_test/words.txt $dir/lm_with_runtime
 fi
