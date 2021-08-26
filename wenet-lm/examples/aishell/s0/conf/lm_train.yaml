@@ -1,0 +1,12 @@
+layer: 2
+unit: 650
+opt: sgd        # or adam
+batchsize: 64   # batch size in LM training
+epoch: 20      # if the data size is large, we can reduce this
+patience: 3
+maxlen: 100     # if sentence length > lm_maxlen, lm_batchsize is automatically reduced
+optim_conf:
+    lr: 0.002
+scheduler: warmuplr     # pytorch v1.1.0+ required
+scheduler_conf:
+    warmup_steps: 15000

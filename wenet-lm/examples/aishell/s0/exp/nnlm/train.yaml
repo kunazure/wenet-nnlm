@@ -1,0 +1,13 @@
+batchsize: 64
+epoch: 20
+layer: 2
+maxlen: 100
+n_vocab: 3232
+opt: sgd
+optim_conf:
+  lr: 0.002
+patience: 3
+scheduler: warmuplr
+scheduler_conf:
+  warmup_steps: 15000
+unit: 650
