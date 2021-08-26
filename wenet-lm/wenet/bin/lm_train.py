@@ -292,7 +292,7 @@ def main(cmd_args):
     executor = LMExecutor()
 
     optimizer = optim.Adam(model.parameters(), **configs['optim_conf'])
-    scheduler = WarmupLR(optimizer, **configs['scheduler_conf'])
+    scheduler = torch.optim.lr_scheduler.ExponentialLR(optimizer, gamma=0.9)
     use_cuda = args.ngpu >= 0 and torch.cuda.is_available()
     device = torch.device('cuda' if use_cuda else 'cpu')
     model = model.to(device)
@@ -302,7 +302,7 @@ def main(cmd_args):
     
     # Start training loop
     executor.step = step
-    scheduler.set_step(step)
+    # scheduler.set_step(step)
     scaler = None
 
     for epoch in range(start_epoch, num_epochs):
